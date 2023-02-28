@@ -5,6 +5,13 @@ const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 module.exports = prisma
 
+const session = require('express-session')
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.SECRET
+}))
+
 app.use(express.json())
 
 const authRouter = require('./routes/auth')
